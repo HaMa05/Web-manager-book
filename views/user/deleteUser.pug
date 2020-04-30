@@ -1,0 +1,13 @@
+extends ../layout/common-user.pug
+block content
+	h1(style="font-family: Arial, sans-serif;" class="text-danger") Delete the user
+	table(class="table table-striped shadow-sm p-3 mb-5 bg-white rounded",style="text-align: left")
+		tr
+			th(scope="col") User
+			th(scope="col") Delete
+		each user in users
+				tr
+					td(scope="row")
+						span= user.name
+					td(scope="row")
+						a(href="/users/" + user.id +"/delete" style='text-decoration: none; color: #dc3545; font-size: 20px; font-weight: bold; padding: 0 10px') Xóa

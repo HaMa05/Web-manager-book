@@ -1,0 +1,14 @@
+extends ./layout/common.pug
+block content
+  nav(class="nav justify-content-center")
+    //- h1(style="font-family: Arial, sans-serif;") You are wellcom!
+    a(href="/books" class="nav-link active") 
+      button(type="button" class="btn btn-primary") Books
+    br
+    br
+    a(href="/users" class="nav-link active") 
+      button(type="button" class="btn btn-warning") Users 
+    br
+    br
+    a(href="/transactions"  class="nav-link active") 
+      button(type="button" class="btn btn-danger") Transactions 

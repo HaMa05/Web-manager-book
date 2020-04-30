@@ -1,0 +1,13 @@
+extends ../layout/common-book.pug
+block content
+	h1(style="font-family: Arial, sans-serif;" class="text-success") Add book
+	form(action="/books/add/book" method="POST")
+		.group(class="form-group col-md-6")
+			label(for="title") Title
+			br
+			input(type="text" id="title" class="form-control" name="title" required)
+		.group(class="form-group col-md-6")
+			label(for="description") Description
+			br
+			input(type="text" id="description" class="form-control" name="description" required)
+		button(type="submit" class="btn btn-warning ml-3") ADD

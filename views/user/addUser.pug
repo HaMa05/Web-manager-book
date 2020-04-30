@@ -1,0 +1,13 @@
+extends ../layout/common-user.pug
+block content
+	h1(style="font-family: Arial, sans-serif;" class="text-success") Add user
+	form(action="/users/add/user" method="POST")
+		.group(class="form-group col-md-6")
+			label(for="name") Name:
+			br
+			input(type="text" id="name" class="form-control" name="name" required)
+		.group(class="form-group col-md-6")
+			label(for="phone") Phone:
+			br
+			input(type="text" id="phone" class="form-control" name="sdt" required)
+		button(type="submit" class="btn btn-warning ml-3") ADD
