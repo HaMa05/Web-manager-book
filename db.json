@@ -35,28 +35,22 @@
   ],
   "collections": [
     {
-      "userId": "behxG2lal",
+      "userId": "5UJ86mRcK",
       "bookId": "ySJMG8v4l",
-      "id": "7Y-Nge_9k",
+      "id": "LXIrl8QLv",
+      "isComplete": true
+    },
+    {
+      "userId": "F4V8vQqvq",
+      "bookId": "iwJn1hbvG",
+      "id": "6bQBpglFr",
       "isComplete": true
     },
     {
       "userId": "5UJ86mRcK",
       "bookId": "VEVh4tc4q",
-      "id": "3A8xNF-_I",
-      "isComplete": false
-    },
-    {
-      "userId": "F4V8vQqvq",
-      "bookId": "LXlfTIDOi",
-      "id": "GT7mDUw_l",
-      "isComplete": false
-    },
-    {
-      "userId": "F4V8vQqvq",
-      "bookId": "VEVh4tc4q",
-      "id": "9pjAhiDMH",
-      "isComplete": false
+      "id": "6bQBpglFE",
+      "isComplete": true
     }
   ]
 }

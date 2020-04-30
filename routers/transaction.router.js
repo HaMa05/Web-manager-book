@@ -10,4 +10,7 @@ router.get('/create', controllerTransaction.create);
 router.post('/', controllerTransaction.postCreate);
 
 router.get('/:id/complete', controllerTransaction.finishBook);
+
+router.get('/complete', controllerTransaction.errorFinish);
+
 module.exports = router;

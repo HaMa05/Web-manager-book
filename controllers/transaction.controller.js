@@ -6,7 +6,6 @@ const users = db.get('users').value();
 const books = db.get('books').value(); 
 
 module.exports.indexTransaction = (req, res) => {
-	
 	let newUser = users;
 	let newBook = books;
 	// loại bỏ tính chất object
@@ -14,9 +13,10 @@ module.exports.indexTransaction = (req, res) => {
 	let newColl = [];
 	newColl = JSON.parse(a);
 
-	// tìm phần tử el.isComplete = false
+	// tìm phần tử el.isComplete = false và id 
 	let user = newColl.filter((el) => {
-		if(el.isComplete !== true) {
+		// el.isComplete = false và id = true
+		if(el.isComplete !== true && el.id) {
 			return newUser.filter((user) => {
 				if(el.userId === user.id) {
 					return el.userId = user.name;
@@ -33,7 +33,7 @@ module.exports.indexTransaction = (req, res) => {
 		})
 	})
 
-	console.log(userDisplay);
+	// console.log(userDisplay);
 
 	// console.log(collections);
 	res.render('transaction/transaction.pug', {
@@ -47,7 +47,6 @@ module.exports.create = (req, res) => {
 		books: books
 	});
 }
-
 
 module.exports.postCreate = (req, res) => {
 	// find id of book from title book
@@ -78,5 +77,10 @@ module.exports.finishBook = (req, res) => {
 	  .find({id: id})
 	  .assign({isComplete: true})
 	  .write();
+	res.redirect('/transactions');
+}
+
+module.exports.errorFinish = (req, res) => {
+	// res.send("Error !!!");
 	res.redirect('/transactions');
 }
