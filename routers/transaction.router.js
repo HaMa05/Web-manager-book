@@ -1,16 +1,17 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
 
-const controllerTransaction = require('../controllers/transaction.controller.js');
+const controllerTransaction = require("../controllers/transaction.controller.js");
 
-router.get('/', controllerTransaction.indexTransaction);
+router.get("/", controllerTransaction.indexTransaction);
 
-router.get('/create', controllerTransaction.create);
+router.get("/create", controllerTransaction.create);
 
-router.post('/', controllerTransaction.postCreate);
+router.post("/", controllerTransaction.postCreate);
 
-router.get('/:id/complete', controllerTransaction.finishBook);
+router.get("/:id/complete", controllerTransaction.finishBook);
 
-router.get('/complete', controllerTransaction.errorFinish);
+// improve if id = null
+router.get("/complete", controllerTransaction.errorFinish);
 
 module.exports = router;
