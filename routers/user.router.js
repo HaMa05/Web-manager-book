@@ -1,16 +1,16 @@
 const express = require("express");
 // const generatePassword = require('password-generator');
-const controllerUser = require('../controllers/user.controller.js');;
+const controllerUser = require("../controllers/user.controller.js");
 const router = express.Router();
 
-router.get('/', controllerUser.index);
+router.get("/", controllerUser.index);
 
 // xem tất cả sách
-router.get('/see', controllerUser.see);
+router.get("/see", controllerUser.see);
 
 // thêm sách
-router.get('/add', controllerUser.add);
-router.post('/add/user', controllerUser.postUser);
+router.get("/add", controllerUser.add);
+router.post("/add/user", controllerUser.postUser);
 
 //sửa title sách
 // router.get('/modify', (req, res) => {
@@ -38,7 +38,7 @@ router.post('/add/user', controllerUser.postUser);
 // })
 
 // xóa sách
-router.get('/delete', controllerUser.deleteUser);
-router.get('/:id/delete', controllerUser.getDelete);
+router.get("/delete", controllerUser.deleteUser);
+router.get("/:id/delete", controllerUser.getDelete);
 
 module.exports = router;
