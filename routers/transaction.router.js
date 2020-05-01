@@ -11,7 +11,7 @@ router.post("/", controllerTransaction.postCreate);
 
 router.get("/:id/complete", controllerTransaction.finishBook);
 
-// improve if id = null
+// improve if id = null url = (transaction//complete)
 router.get("/complete", controllerTransaction.errorFinish);
 
 module.exports = router;

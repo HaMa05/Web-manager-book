@@ -4,7 +4,10 @@ block content
 	table(class="table table-striped shadow-sm p-3 mb-5 bg-white rounded",style="text-align: left")
 		tr
 			th(scope="col") User
+			th(scope="col") Phone
 		each user in users
 			tr
 				td(scope="row")
 					span= user.name
+				td(scope="row")
+					span= user.phone
