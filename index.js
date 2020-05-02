@@ -11,8 +11,11 @@ const port = 3000;
 const bookRouter = require('./routers/book.router.js');
 const userRouter = require('./routers/user.router.js');
 const transactionRouter = require('./routers/transaction.router.js');
+const authRouter = require('./routers/auth.router.js');
 const indexRouter = require('./routers/index.router.js');
+
 const cookieCount = require("./middleware/cookie-count");
+const middlewareAuth = require('./middleware/auth.middleware.js');
 
 const pug = require('pug');
 	app.set('view engine', 'pug');
@@ -31,8 +34,9 @@ app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')))
 // Trang chính
 app.use('/', indexRouter);
 
-app.use('/books', cookieCount.count, bookRouter);
-app.use('/users', cookieCount.count, userRouter);
-app.use('/transactions', cookieCount.count, transactionRouter);
+app.use('/auth', /*cookieCount.count*/ authRouter);
+app.use('/books', /*cookieCount.count*/middlewareAuth.requireAuth, bookRouter);
+app.use('/users', /*cookieCount.count*/middlewareAuth.requireAuth, userRouter);
+app.use('/transactions', /*cookieCount.count*/middlewareAuth.requireAuth, transactionRouter);
 
 app.listen(port, () => console.log(`Example app listening at http://localhost:${port}`));

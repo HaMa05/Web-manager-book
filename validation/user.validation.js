@@ -9,6 +9,5 @@ module.exports.postUser = (req, res, next) => {
 		return;
 	}
 	// res.locals.success = true;
-
   next();
 }

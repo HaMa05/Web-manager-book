@@ -25,32 +25,45 @@
     {
       "name": "Hieu Map",
       "phone": "0967393125",
-      "id": "5UJ86mRcK"
+      "id": "5UJ86mRcK",
+      "email": "info@hippo.po",
+      "password": "123123"
     },
     {
       "name": "Bang Tho",
       "phone": "0967393167",
-      "id": "n3vSEwpDg"
+      "id": "n3vSEwpDg",
+      "email": "BangTho@gmail.com",
+      "password": "123123"
     },
     {
       "name": "Tuyet",
       "phone": "0967393167",
-      "id": "4T5n28TAm"
+      "id": "4T5n28TAm",
+      "email": "phungtuyet@gmail.com",
+      "password": "123123"
     },
     {
       "name": "Ngọc",
       "phone": "0967393167",
-      "id": "HzkWk6Gtz"
-    },
-    {
-      "name": "Cave",
-      "phone": "4875923992",
-      "id": "uZXEFxul-"
+      "id": "HzkWk6Gtz",
+      "email": "ngoctrinh@NTW.NT",
+      "password": "123123"
     },
     {
       "name": "Nhat Giang",
       "phone": "4875923992",
-      "id": "B5wbxUObs"
+      "id": "B5wbxUObs",
+      "email": "giangbim@bim.im",
+      "password": "123123"
+    },
+    {
+      "name": "HaBui",
+      "phone": "09679393123",
+      "id": "nwQ_BSXRP",
+      "email": "anhhaeagle@gmail.com",
+      "password": "123123",
+      "isAdmin": true
     }
   ],
   "collections": [
@@ -86,6 +99,6 @@
     }
   ],
   "countCookie": {
-    "count": 9
+    "count": 60
   }
 }
