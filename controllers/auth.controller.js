@@ -26,5 +26,5 @@ module.exports.postLogin = (req, res) => {
 	}
 
 	res.cookie("cookieId", user.id);
-	res.redirect('/users/see');
+	res.redirect('/transactions');
 }
