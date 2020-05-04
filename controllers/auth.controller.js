@@ -39,7 +39,9 @@ module.exports.postLogin = (req, res) => {
     if (err) throw err;
 
     if (result) {
-      res.cookie("cookieId", user.id);
+      res.cookie("cookieId", user.id, {
+        signed: true
+      });
       res.redirect("/transactions");
     } else {
       // if user input fail

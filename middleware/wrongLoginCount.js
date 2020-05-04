@@ -3,6 +3,7 @@ const db = require('../db');
 module.exports.wrongLogin = (user) => {
   user.wrongLoginCount++;
   db.get("users")
-    .assign({'wrongLogin': user.wrongLoginCount})
+    .find({"id": user.id})
+    .assign({'wrongLoginCount': user.wrongLoginCount})
     .write()
 }

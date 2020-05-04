@@ -1,6 +1,6 @@
 const db = require("../db");
 module.exports.requireAuth = (req, res, next) => {
-  var cookieId = req.cookies.cookieId;
+  var cookieId = req.signedCookies.cookieId;
   if(!cookieId) {
     res.redirect('/auth/login');
     return;
@@ -11,12 +11,14 @@ module.exports.requireAuth = (req, res, next) => {
     res.redirect('/auth/login');
     return;
   }
+
+  res.locals.user = user;
   
   // nếu là user thì chỉ hiển thị trang transaction
-  if(!user.isAdmin) {
-    res.redirect('/transactions');
-    return;
-  }
+  // if(!user.isAdmin) {
+  //   res.redirect('/transactions');
+  //   return;
+  // }
   
   next();
 }

@@ -7,4 +7,8 @@ html
       block nav
       a(href="/" class="nav-link active") 
         button(type="button" class="btn btn-info") Home
+      a(href="/" class="nav-link active") 
+        button(type="button" class="btn btn-dark")
+          if user
+            span= user.name
     block content 
