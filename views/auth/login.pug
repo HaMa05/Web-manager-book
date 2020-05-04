@@ -7,7 +7,7 @@ block content
 		.group(class="form-group col-md-6")
 			label(for="email") Email:
 			br
-			input(type="text" id="email" class="form-control" name="email" required )
+			input(type="text" id="email" class="form-control" name="email" value=values ? values.email : "", required)
 		.group(class="form-group col-md-6")
 			label(for="password") Password:
 			br

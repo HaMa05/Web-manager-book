@@ -37,6 +37,6 @@ app.use('/', indexRouter);
 app.use('/auth', /*cookieCount.count*/ authRouter);
 app.use('/books', /*cookieCount.count*/middlewareAuth.requireAuth, bookRouter);
 app.use('/users', /*cookieCount.count*/middlewareAuth.requireAuth, userRouter);
-app.use('/transactions', /*cookieCount.count*/middlewareAuth.requireAuth, transactionRouter);
+app.use('/transactions', /*cookieCount.count*/ transactionRouter);
 
 app.listen(port, () => console.log(`Example app listening at http://localhost:${port}`));
