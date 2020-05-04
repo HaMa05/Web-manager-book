@@ -4,7 +4,7 @@ block content
 	if error
 		.alert.alert-danger= error
 	form(action="/users/add/user" method="POST")
-		.group(class="form-group col-md-6")
+		.group(class="form-group col-md-6" required)
 			label(for="name") Name:
 			br
 			input(type="text" id="name" class="form-control" name="name" required)
@@ -12,4 +12,12 @@ block content
 			label(for="phone") Phone:
 			br
 			input(type="text" id="phone" class="form-control" name="phone" required)
+		.group(class="form-group col-md-6")
+			label(for="email") Email:
+			br
+			input(type="email" id="email" class="form-control" name="email" required)
+		.group(class="form-group col-md-6")
+			label(for="password") Password:
+			br
+			input(type="password" id="password" class="form-control" name="password" required)
 		button(type="submit" class="btn btn-warning ml-3") ADD
