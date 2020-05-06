@@ -25,18 +25,18 @@
     {
       "name": "Minh Hieu",
       "phone": "4875923992",
-      "email": "info1@hippo.po",
+      "email": "buivanha31122000@gmail.com",
       "password": "$2b$10$b.H9WM.4rChP4Ttqs8QCVecs7jxxe5HI2EZWOs/0XNQ2jt4XlTmzC",
       "id": "1kaCMJcXM",
-      "wrongLoginCount": 1
+      "wrongLoginCount": 3
     },
     {
       "name": "Hong Nhung",
       "phone": "09679393123",
-      "email": "nhung@gmail.com",
+      "email": "vanha.jungle@gmail.com",
       "password": "$2b$10$Oz/LRQZJxHUkBboRkZT7zerYh/qR2QB16UUnShFDGeVYglROt3E1G",
       "id": "DY7W_By0V",
-      "wrongLoginCount": 0
+      "wrongLoginCount": 5
     },
     {
       "name": "Admin",
