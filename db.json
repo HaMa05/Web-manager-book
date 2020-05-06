@@ -28,7 +28,7 @@
       "email": "buivanha31122000@gmail.com",
       "password": "$2b$10$b.H9WM.4rChP4Ttqs8QCVecs7jxxe5HI2EZWOs/0XNQ2jt4XlTmzC",
       "id": "1kaCMJcXM",
-      "wrongLoginCount": 3
+      "wrongLoginCount": 0
     },
     {
       "name": "Hong Nhung",
@@ -36,7 +36,7 @@
       "email": "vanha.jungle@gmail.com",
       "password": "$2b$10$Oz/LRQZJxHUkBboRkZT7zerYh/qR2QB16UUnShFDGeVYglROt3E1G",
       "id": "DY7W_By0V",
-      "wrongLoginCount": 5
+      "wrongLoginCount": 0
     },
     {
       "name": "Admin",
@@ -52,7 +52,7 @@
       "email": "bangtho@gmail.com",
       "password": "$2b$10$kc0NIO7FWfzXQKW3bYPASuk7VcVYVTTq7aWymQBQjQXXCEy6ZxSU6",
       "id": "2jl5ZArBQ",
-      "wrongLoginCount": 0
+      "wrongLoginCount": 1
     }
   ],
   "collections": [],

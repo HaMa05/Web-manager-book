@@ -1,5 +1,5 @@
 require('dotenv').config();
-// console.log(process.env.SESSION_SECRET);
+// console.log(process.env.SENDGRID_API_KEY);
 // console.log(process.env.SENDGRID_SECRET);
 const express = require("express");
 const bodyParser = require("body-parser");
