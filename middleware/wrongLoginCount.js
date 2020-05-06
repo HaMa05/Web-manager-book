@@ -7,3 +7,12 @@ module.exports.wrongLogin = (user) => {
     .assign({ wrongLoginCount: user.wrongLoginCount })
     .write();
 };
+
+module.exports.resetWrongLoginCount = (user) => {
+  let reset = 0;
+  user.wrongLoginCount = reset;
+  db.get("user")
+    .find({ id: user.id })
+    .assign({ wrongLoginCount: user.wrongLoginCount })
+    .write();
+};

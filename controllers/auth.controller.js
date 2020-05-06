@@ -34,6 +34,8 @@ module.exports.postLogin = (req, res) => {
     if (err) throw err;
 
     if (result) {
+      // reset wronglogincount
+      wrongLoginCountFn.resetWrongLoginCount(user);
 
       res.cookie("cookieId", user.id, {
         signed: true
