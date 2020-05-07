@@ -5,7 +5,7 @@
 * CRUD book
 * CRUD user
 ## Send Email
-* Use [nodemailer](https://nodemailer.com/)
+* Use  [![nodemailer](https://raw.githubusercontent.com/nodemailer/nodemailer/master/assets/nm_logo_200x136.png)](https://nodemailer.com/)
 ## Config for send email
 * Install
 ```node
