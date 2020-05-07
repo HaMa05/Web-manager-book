@@ -1,4 +1,4 @@
-require('dotenv').config();
+require("dotenv").config();
 // console.log(process.env.SENDGRID_API_KEY);
 // console.log(process.env.SENDGRID_SECRET);
 const express = require("express");
@@ -16,6 +16,8 @@ const userRouter = require("./routers/user.router.js");
 const transactionRouter = require("./routers/transaction.router.js");
 const authRouter = require("./routers/auth.router.js");
 const indexRouter = require("./routers/index.router.js");
+
+const paginationRouter = require("./routers/pagination.router.js");
 
 const cookieCount = require("./middleware/cookie-count");
 const middlewareAuth = require("./middleware/auth.middleware.js");
@@ -37,14 +39,12 @@ app.use(favicon(path.join(__dirname, "public", "favicon.ico")));
 // Trang chính
 app.use("/", indexRouter);
 
-app.use("/auth", /*cookieCount.count*/ authRouter);
-app.use("/books", /*cookieCount.count*/ middlewareAuth.requireAuth, bookRouter);
-app.use("/users", /*cookieCount.count*/ middlewareAuth.requireAuth, userRouter);
-app.use(
-  "/transactions",
-  /*cookieCount.count*/ middlewareAuth.requireAuth,
-  transactionRouter
-);
+app.use("/auth", authRouter);
+app.use("/books", middlewareAuth.requireAuth, bookRouter);
+app.use("/users", middlewareAuth.requireAuth, userRouter);
+app.use("/transactions", middlewareAuth.requireAuth, transactionRouter);
+app.use("/products", middlewareAuth.requireAuth, paginationRouter);
+
 
 app.listen(port, () =>
   console.log(`Example app listening at http://localhost:${port}`)

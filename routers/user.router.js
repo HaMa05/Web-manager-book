@@ -2,12 +2,17 @@ const express = require("express");
 // const generatePassword = require('password-generator');
 const controllerUser = require("../controllers/user.controller.js");
 const validationUser = require("../validation/user.validation.js");
+const paginationMiddleware = require("../middleware/pagination.middleware");
+
 const router = express.Router();
+
+const db = require("../db");
+let users = db.get('users').value();
 
 router.get("/", controllerUser.index);
 
 // xem user
-router.get("/see", controllerUser.see);
+router.get("/see", paginationMiddleware.perPage(users), controllerUser.see);
 
 // thêm user
 router.get("/add", controllerUser.add);
