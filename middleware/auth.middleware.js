@@ -13,12 +13,5 @@ module.exports.requireAuth = (req, res, next) => {
   }
 
   res.locals.user = user;
-  
-  // nếu là user thì chỉ hiển thị trang transaction
-  // if(!user.isAdmin) {
-  //   res.redirect('/transactions');
-  //   return;
-  // }
-  
   next();
 }
