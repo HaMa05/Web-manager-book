@@ -18,7 +18,7 @@ block content
             a.page-link(href='?page=' + previous aria-label="Previous")
               span(aria-hidden="true") &laquo;
         li.page-item
-          a.page-link(href='#')= page
+          a.page-link(href='?page=' + page)= page
         if next
           li.page-item
             a.page-link(href='?page=' + next aria-label="Next")
