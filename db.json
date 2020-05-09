@@ -1099,7 +1099,14 @@
       "id": "c6ed3487-7c2b-4cd7-bf0f-ea34145dd218"
     }
   ],
-  "collections": [],
+  "collections": [
+    {
+      "userId": "DY7W_By0V",
+      "bookId": "ac1bab08-76ee-421c-8271-7b99c1279cc0",
+      "id": "l04U3szbf",
+      "isComplete": false
+    }
+  ],
   "countCookie": {
     "count": 60
   }

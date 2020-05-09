@@ -16,6 +16,7 @@ const userRouter = require("./routers/user.router.js");
 const transactionRouter = require("./routers/transaction.router.js");
 const authRouter = require("./routers/auth.router.js");
 const indexRouter = require("./routers/index.router.js");
+const profileRouter = require("./routers/profile.router.js");
 
 const paginationRouter = require("./routers/pagination.router.js");
 
@@ -44,7 +45,7 @@ app.use("/books", middlewareAuth.requireAuth, bookRouter);
 app.use("/users", middlewareAuth.requireAuth, userRouter);
 app.use("/transactions", middlewareAuth.requireAuth, transactionRouter);
 app.use("/products", middlewareAuth.requireAuth, paginationRouter);
-
+app.use("/profile", middlewareAuth.requireAuth, profileRouter);
 
 app.listen(port, () =>
   console.log(`Example app listening at http://localhost:${port}`)
