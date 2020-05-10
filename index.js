@@ -44,7 +44,7 @@ app.use("/auth", authRouter);
 app.use("/books", middlewareAuth.requireAuth, bookRouter);
 app.use("/users", middlewareAuth.requireAuth, userRouter);
 app.use("/transactions", middlewareAuth.requireAuth, transactionRouter);
-app.use("/products", middlewareAuth.requireAuth, paginationRouter);
+app.use("/products", paginationRouter);
 app.use("/profile", middlewareAuth.requireAuth, profileRouter);
 
 app.listen(port, () =>
