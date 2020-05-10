@@ -53,12 +53,11 @@ npm install nodemailer --save
   ```
   
 ## Upload file to Cloudinary
-  ### Config
-  * install [Cloudinary](https://www.npmjs.com/package/cloudinary)
+  * Install [Cloudinary](https://www.npmjs.com/package/cloudinary)
   ```node
    npm install cloudinary --save
   ```
-  * The cloud_name, api_key, api_secret in Account Detail
+  * Config the cloud_name, api_key, api_secret in Account Detail
   ```node
   const cloudinary = require('cloudinary').v2;
   cloudinary.config({ 
@@ -67,11 +66,14 @@ npm install nodemailer --save
    api_secret: process.env.CLOUDINARY_API_SECRET
   });
   ```
-  * install [Multer](https://www.npmjs.com/package/multer) and upload file
+  * Install [Multer](https://www.npmjs.com/package/multer) and Usage Multer
   ```node
    const multer  = require('multer');
    var upload = multer({ dest: 'public/uploads/' });
-   router.post("/avatar", upload.single('avatar'), profileController.postProfile);
+  ```
+  * Upload file
+  ```node
+   // router.post("/avatar", upload.single('avatar'), profileController.postProfile);
    // syntax
    router.post("/avatar", upload.single('avatar'), async (req, res) => {
     var cookieId = req.signedCookies.cookieId;
