@@ -12,7 +12,6 @@ cloudinary.config({
   api_secret: process.env.CLOUDINARY_API_SECRET
 });
 
-
 // profile
 router.get("/", profileController.profile);
 
