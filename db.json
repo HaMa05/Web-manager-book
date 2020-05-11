@@ -1104,10 +1104,47 @@
       "userId": "DY7W_By0V",
       "bookId": "ac1bab08-76ee-421c-8271-7b99c1279cc0",
       "id": "l04U3szbf",
+      "amount": 0,
+      "isComplete": true
+    },
+    {
+      "bookId": "beda6c14-8e8b-42bd-ad60-2e56b2e7f47a",
+      "id": "jofCIO4rfV",
+      "amount": 0,
+      "userId": "DY7W_By0V",
+      "isComplete": true
+    },
+    {
+      "bookId": "ddee78b7-995b-489a-b684-3a31e3c8075a",
+      "id": "iatLf7NbkR",
+      "amount": 1,
+      "userId": "DY7W_By0V",
+      "isComplete": false
+    },
+    {
+      "bookId": "beda6c14-8e8b-42bd-ad60-2e56b2e7f47a",
+      "id": "5xN0VAVxxW",
+      "amount": 2,
+      "userId": "DY7W_By0V",
+      "isComplete": false
+    },
+    {
+      "bookId": "ddee78b7-995b-489a-b684-3a31e3c8075a",
+      "id": "j1IBph_cih",
+      "amount": 1,
+      "userId": "DY7W_By0V",
       "isComplete": false
     }
   ],
   "countCookie": {
     "count": 60
-  }
+  },
+  "session": [
+    {
+      "sessionId": "bQ833vlS4",
+      "book": {
+        "beda6c14-8e8b-42bd-ad60-2e56b2e7f47a": 2
+      }
+    }
+  ]
 }

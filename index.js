@@ -22,6 +22,7 @@ const paginationRouter = require("./routers/pagination.router.js");
 
 const cookieCount = require("./middleware/cookie-count");
 const middlewareAuth = require("./middleware/auth.middleware.js");
+const middlewareSession = require("./middleware/session.middleware.js");
 
 const pug = require("pug");
 app.set("view engine", "pug");
@@ -30,7 +31,7 @@ app.set("views", "./views");
 app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser(process.env.SESSION_SECRET));
-
+app.use(middlewareSession);
 // user public
 app.use(express.static("public"));
 
