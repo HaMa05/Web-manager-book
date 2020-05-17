@@ -2,7 +2,7 @@ const bcrypt = require("bcrypt");
 
 const sendEmail = require('../config/configEmail.js');
 const userModel = require("../models/user.model");
-// const db = require("../db");
+
 // middleware check đăng nhập sai nhiều lần
 var wrongLoginCountFn = require("../middleware/wrongLoginCount");
 
@@ -18,7 +18,6 @@ module.exports.postLogin = async (req, res) => {
 
   var u = await userModel.find({email: email});
   var user = u[0];
-  // var user = db.get("users").find({ email: email }).value();
   if (!user) {
     res.render("auth/login.pug", {
       error: "Email don't exits.",
@@ -28,7 +27,6 @@ module.exports.postLogin = async (req, res) => {
     return;
   }
 
-  // var hashedPassword = md5(password);
   // use bcrtpy that check user's password input
   bcrypt.compare(password, user.password, (err, result) => {
     if (err) throw err;

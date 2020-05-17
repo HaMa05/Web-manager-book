@@ -6,7 +6,7 @@ module.exports.requireAuth = async (req, res, next) => {
     return;
   }
 
-  var user = userModel.find({_id: cookieId});
+  var user = await userModel.find({_id: cookieId});
   if(!user) {
     res.redirect('/auth/login');
     return;
