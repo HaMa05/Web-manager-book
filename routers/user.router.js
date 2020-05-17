@@ -6,13 +6,10 @@ const paginationMiddleware = require("../middleware/pagination.middleware");
 
 const router = express.Router();
 
-const db = require("../db");
-let users = db.get('users').value();
-
 router.get("/", controllerUser.index);
 
 // xem user
-router.get("/see", paginationMiddleware.perPage(users), controllerUser.see);
+router.get("/see", paginationMiddleware.perPage("user"), controllerUser.see);
 
 // thêm user
 router.get("/add", controllerUser.add);

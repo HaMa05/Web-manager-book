@@ -1,15 +1,12 @@
 const express = require("express");
 
-const db = require("../db");
-let books = db.get('books').value();
-
 const controllerBook = require("../controllers/book.controller.js");
 const paginationMiddleware = require("../middleware/pagination.middleware");
 const router = express.Router();
 router.get("/", controllerBook.index);
 
 // xem tất cả sách
-router.get("/seeBookPagination", paginationMiddleware.perPage(books), controllerBook.see);
+router.get("/seeBookPagination", paginationMiddleware.perPage("book"), controllerBook.see);
 
 // thêm sách
 router.get("/add", controllerBook.add);

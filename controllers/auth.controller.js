@@ -1,7 +1,7 @@
-// const md5 = require("md5");
 const bcrypt = require("bcrypt");
-// const saltRounds = 10;
+var mongoose = require("mongoose");
 
+mongoose.connect(process.env.MONGO_URL, {useNewUrlParser: true});
 
 const sendEmail = require('../config/configEmail.js');
 const db = require("../db");

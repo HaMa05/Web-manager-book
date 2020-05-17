@@ -1,13 +1,16 @@
-const db = require("../db");
+// const db = require("../db");
 module.exports.perPage = (model) => {
-  return (req, res, next) => {
+  return async (req, res, next) => {
+    const xModel = require("../models/" + model + ".model");
+    var curDB =  await xModel.find();
+
     let page = parseInt(req.query.page) || 1;
     let limit = 10;
     let start = (page - 1) * limit;
     let end = page * limit;
 
     let result = {};
-    if (end < model.length) {
+    if (end < curDB.length) {
       result.next = page + 1;
     }
 
@@ -17,7 +20,7 @@ module.exports.perPage = (model) => {
       result.previous = page - 1;
     }
 
-    result.perPage = model.slice(start, end);
+    result.perPage = curDB.slice(start, end);
     res.locals.result = result;
     next();
   };

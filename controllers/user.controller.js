@@ -1,9 +1,7 @@
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
 
-const db = require('../db');
-const shortid = require('shortid');
-const users = db.get('users').value();
+const userModel = require("../models/user.model");
 
 module.exports.index = (req, res) => {
 	res.render('user/indexUser.pug');
@@ -18,7 +16,7 @@ module.exports.index = (req, res) => {
 module.exports.see = (req, res) => {
 	let result = res.locals.result;
 	res.render('user/seeUserPagination.pug', {
-		users: result.perPage,
+	users: result.perPage,
     next: result.next,
     page: result.page,
     previous: result.previous
@@ -30,21 +28,23 @@ module.exports.add = (req, res) => {
 }
 
 module.exports.postUser = (req, res) => {
-	let id = shortid.generate();
+	
 	let data = req.body;
-	req.body.id = id;
+	req.body.isAdmin = false;
 	req.body.wrongLoginCount = 0;
-
+	if(!req.body.avatar)
+		req.body.avatar = "https://res.cloudinary.com/buivanha/image/upload/v1589704912/avatarUrl/1137866_dlrfpb.png";
 	bcrypt.hash(data.password, saltRounds, (err, hash) => {
 		data.password = hash;
-		db.get('users')
-			.push(data)
-			.write();
+		userModel.insertMany(data);
+		// db.get('users')
+		// 	.push(data)
+		// 	.write();
 	})
-
-	res.render('user/seeUser.pug', {
-		users: users
-	});
+	res.redirect('/users');
+	// res.render('user/seeUser.pug', {
+	// 	users: users
+	// });
 }
 
 module.exports.deleteUser = (req, res) => {
