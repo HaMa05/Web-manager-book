@@ -7,12 +7,6 @@ module.exports.index = (req, res) => {
 	res.render('user/indexUser.pug');
 }
 
-// module.exports.see = (req, res) => {
-// 	res.render('user/seeUser.pug', {
-// 		users: users
-// 	});
-// }
-
 module.exports.see = (req, res) => {
 	let result = res.locals.result;
 	res.render('user/seeUserPagination.pug', {
@@ -37,14 +31,8 @@ module.exports.postUser = (req, res) => {
 	bcrypt.hash(data.password, saltRounds, (err, hash) => {
 		data.password = hash;
 		userModel.insertMany(data);
-		// db.get('users')
-		// 	.push(data)
-		// 	.write();
 	})
 	res.redirect('/users');
-	// res.render('user/seeUser.pug', {
-	// 	users: users
-	// });
 }
 
 module.exports.deleteUser = async (req, res) => {
@@ -56,9 +44,6 @@ module.exports.deleteUser = async (req, res) => {
 
 module.exports.getDelete = async (req, res) => {
 	const id = req.params.id;
-	await userModel.findByIdAndRemove(id)
-	// db.get('users')
-	//   .remove({id: id})
-	//   .write()
+	await userModel.findByIdAndRemove(id);
 	res.redirect('/users');
 }
