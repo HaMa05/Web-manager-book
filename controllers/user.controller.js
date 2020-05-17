@@ -47,16 +47,18 @@ module.exports.postUser = (req, res) => {
 	// });
 }
 
-module.exports.deleteUser = (req, res) => {
+module.exports.deleteUser = async (req, res) => {
+	var users = await userModel.find();
 	res.render('user/deleteUser.pug', {
 		users: users
 	});
 }
 
-module.exports.getDelete = (req, res) => {
+module.exports.getDelete = async (req, res) => {
 	const id = req.params.id;
-	db.get('users')
-	  .remove({id: id})
-	  .write()
+	await userModel.findByIdAndRemove(id)
+	// db.get('users')
+	//   .remove({id: id})
+	//   .write()
 	res.redirect('/users');
 }
