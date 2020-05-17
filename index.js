@@ -4,6 +4,9 @@ require("dotenv").config();
 const express = require("express");
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
+var mongoose = require("mongoose");
+
+mongoose.connect(process.env.MONGO_URL, {useNewUrlParser: true});
 // set up that use favicon
 var favicon = require("serve-favicon");
 var path = require("path");

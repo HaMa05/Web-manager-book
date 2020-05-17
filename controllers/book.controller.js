@@ -31,7 +31,7 @@ module.exports.postAddBook = (req, res) => {
 
 module.exports.modify = async (req, res) => {
 	var books = await bookModel.find();
-	res.render('book/modify.pug', {
+	res.render('book/modify.pug', {	
 		books: books
 	});
 }

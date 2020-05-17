@@ -1,10 +1,8 @@
 const bcrypt = require("bcrypt");
-var mongoose = require("mongoose");
-
-mongoose.connect(process.env.MONGO_URL, {useNewUrlParser: true});
 
 const sendEmail = require('../config/configEmail.js');
-const db = require("../db");
+const userModel = require("../models/user.model");
+// const db = require("../db");
 // middleware check đăng nhập sai nhiều lần
 var wrongLoginCountFn = require("../middleware/wrongLoginCount");
 
@@ -14,11 +12,13 @@ module.exports.login = (req, res) => {
 };
 
 // post thông tin đăng nhập
-module.exports.postLogin = (req, res) => {
+module.exports.postLogin = async (req, res) => {
   var email = req.body.email;
   var password = req.body.password;
 
-  var user = db.get("users").find({ email: email }).value();
+  var u = await userModel.find({email: email});
+  var user = u[0];
+  // var user = db.get("users").find({ email: email }).value();
   if (!user) {
     res.render("auth/login.pug", {
       error: "Email don't exits.",
@@ -36,13 +36,13 @@ module.exports.postLogin = (req, res) => {
     if (result) {
       // reset wronglogincount
       wrongLoginCountFn.resetWrongLoginCount(user);
-
-      res.cookie("cookieId", user.id, {
+      res.cookie("cookieId", user._id, {
         signed: true
       });
       res.redirect("/transactions");
     } else {
       // if user input fail
+
       wrongLoginCountFn.wrongLogin(user);
 
       // đăng nhập sai quá 3 lần
