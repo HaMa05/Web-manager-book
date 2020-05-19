@@ -1,13 +1,16 @@
-const db = require("../db");
+// const db = require("../db");
 const shortid = require("shortid");
-module.exports.get = (req, res) => {
-  let result = res.locals.result;
+const sessionModel = require("../models/session.model");
 
+module.exports.get = async (req, res) => {
+  let result = res.locals.result;
   let sessionId = req.signedCookies.sessionId;
+
   let bookRent = db.get("session")
                    .find({sessionId: sessionId})
                    .get("book")
                    .value()
+                   
   var amountBookRent = 0;
   for(var id in bookRent) {
       amountBookRent += bookRent[id];

@@ -1,78 +1,39 @@
 const shortid = require('shortid');
 
-const db = require('../db');
-const collections = db.get('collections').value();
-const users = db.get('users').value(); 
-const books = db.get('books').value(); 
+const bookRentsModel = require("../models/bookRent.model");
+const userModel = require("../models/user.model");
+const bookModel = require("../models/book.model");
 
 // admin
-module.exports.indexTransaction = (req, res) => {
-	let newUser = users;
-	let newBook = books;
+module.exports.indexTransaction = async (req, res) => {
+	const bookRents = await bookRentsModel.find();
+	const users = await userModel.find();
+	var newUser = users;
 	// loại bỏ tính chất object
-	let a = JSON.stringify(collections);
-	let newColl = [];
-	newColl = JSON.parse(a);
+	let a = JSON.stringify(bookRents);
+	let newBookRent = [];
+	newBookRent = JSON.parse(a);
+
 
 	// tim user dựa vào userId của collections
-	let user = newColl.filter((el) => {
+	let user = newBookRent.filter((el) => {
 		// el.isComplete = false và id = true
-		if(el.isComplete !== true && el.id) {
-			return newUser.filter((user) => {
-				if(el.userId === user.id) {
+		if(el.isComplete !== true && el._id) {
+			return newUser.find((user) => {
+				if(String(el.userId) === String(user.id)) {
 					return el.userId = user.name;
 				}
 			})
 		}
 	});
 
+	console.log(user);
+	const books = await bookModel.find();
+	var newBook = books;
 	// tìm title dựa vào bookId
 	let userDisplay = user.filter((el) => {
-		return newBook.filter((book) => {
-			if(el.bookId === book.id) {
-				return el.bookId = book.title;
-			}
-		})
-	})
-
-	res.render('transaction/transaction.pug', {
-		collections: userDisplay
-	});
-}
-
-// user 
-module.exports.indexTransactionUser = (req, res, next) => {
-	let newUser = users;
-	let newBook = books;
-	let cookieId = req.signedCookies.cookieId; // cookieId = userId
-
-	// Neu la tai khoan dang nhap la admin thi chuyen sang module khac
-	let isAdmin = db.get('users').find({id: cookieId}).value();
-	if(isAdmin.isAdmin) {
-		next();
-		return;
-	}
-	// loại bỏ tính chất object
-	let a = JSON.stringify(collections);
-	let newColl = [];
-	newColl = JSON.parse(a);
-
-	// tim user dựa vào userId của collections
-	let user = newColl.filter((el) => {
-		// el.isComplete = false và id = true
-		if(el.isComplete !== true && el.id && el.userId === cookieId) {
-			return newUser.filter((user) => {
-				if(el.userId === user.id) {
-					return el.userId = user.name;
-				}
-			})
-		}
-	});
-
-	// tìm title dựa vào bookId
-	let userDisplay = user.filter((el) => {
-		return newBook.filter((book) => {
-			if(el.bookId === book.id) {
+		return newBook.find((book) => {
+			if(String(el.bookId) === String(book.id)) {
 				return el.bookId = book.title;
 			}
 		})
@@ -84,55 +45,95 @@ module.exports.indexTransactionUser = (req, res, next) => {
 	});
 }
 
-module.exports.create = (req, res) => {
+// user 
+module.exports.indexTransactionUser = async (req, res, next) => {
+	let cookieId = req.signedCookies.cookieId; // cookieId = userId
+
+	// Neu la tai khoan dang nhap la admin thi chuyen sang module khac
+	let isAdmin = await userModel.find({_id: cookieId});
+	if(isAdmin[0].isAdmin) {
+		next();
+		return;
+	}
+	const bookRents = await bookRentsModel.find();
+	const newUser = await userModel.find();
+	// loại bỏ tính chất object
+	let a = JSON.stringify(bookRents);
+	let newBookRent = [];
+	newBookRent = JSON.parse(a);
+	// tim user dựa vào userId của collections
+	let user = newBookRent.filter((el) => {
+		// el.isComplete = false và id = true
+		if(el.isComplete !== true && el._id && el.userId === cookieId) {
+			return newUser.find((user) => {
+				// console.log(el.userId);
+				if(String(el.userId) === String(user._id)) {
+					return el.userId = user.name;
+				}
+			})
+		}
+	});
+	// console.log(user);
+	const newBook = await bookModel.find();
+	// tìm title dựa vào bookId
+	let userDisplay = user.filter((el) => {
+		return newBook.find((book) => {
+			if(String(el.bookId) === String(book._id)) {
+				return el.bookId = book.title;
+			}
+		})
+	})
+
+	// console.log(userDisplay);
+	res.render('transaction/transaction.pug', {
+		collections: userDisplay
+	});
+	return;
+}
+
+module.exports.create = async (req, res) => {
+	let users = await userModel.find();
+	let books = await bookModel.find();
 	res.render('transaction/transaction-create.pug', {
 		users: users,
 		books: books
 	});
 }
 
-module.exports.postCreate = (req, res) => {
+module.exports.postCreate = async (req, res) => {
 	// find id of book from title book
-	let id = shortid.generate();
-	let isComplete = false;
-	var book = books.find((book) => {
-		return book.title === req.body.bookId;
-	})
-	// find id of user from name user
-	var user = users.find((user) => {
-		return user.name === req.body.userId;
-	})
-	req.body.id = id;
-	req.body.userId = user.id;
-	req.body.bookId = book.id;
-	req.body.isComplete = isComplete;
+	// let id = shortid.generate();
+	let user = await userModel.find(
+			{
+				name: req.body.userId
+			}
+		);
+	let book = await bookModel.find(
+			{
+				title: req.body.bookId
+			}
+		);
 
-	db.get('collections')
-	  .push(req.body)
-	  .write();
+	let isComplete = false;
+	let data = req.body;
+	req.body.userId = user[0].id;
+	req.body.bookId = book[0].id;
+	req.body.isComplete = isComplete;
+	req.body.amount = 1;
+
+	bookRentsModel.insertMany(data);
 
 	res.redirect('/');
 }
 
-module.exports.finishBook = (req, res) => {
+module.exports.finishBook = async (req, res) => {
 	const id = req.params.id;
-	var book = db.get('collections')
-		.find({id: id})
-		.value()
-	
-	if(book.amount === 1) {
-			db.get('collections')
-			.find({id: id})
-			.assign({isComplete: true})
-			.write();
+	var book = await bookRentsModel.find({_id: id});
+	if(book[0].amount === 1) {
+		await bookRentsModel.findByIdAndUpdate(id, {isComplete: true});
 		res.redirect('/transactions');
 	}
-
-
-	db.get('collections')
-	  .find({id: id})
-	  .assign({amount: book.amount - 1})
-	  .write();
+	await bookRentsModel.findByIdAndUpdate(id, {amount: book[0].amount - 1});
 	res.redirect('/transactions');
 }
 
