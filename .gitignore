@@ -1,2 +1,4 @@
 node_modules
 .env
+config_DB/
+udo systemctl enable mongod
