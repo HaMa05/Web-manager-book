@@ -26,6 +26,7 @@ const port = 3000;
 
 const authApiRouter = require("./api/routers/auth.router");
 const transactionApiRouter = require("./api/routers/transaction.router");
+const bookApiRouter = require("./api/routers/book.router");
 
 const bookRouter = require("./routers/book.router.js");
 const userRouter = require("./routers/user.router.js");
@@ -59,6 +60,7 @@ app.use("/", indexRouter);
 
 app.use("/api", authApiRouter);
 app.use("/api", transactionApiRouter);
+app.use("/api", bookApiRouter);
 
 app.use("/auth", authRouter);
 app.use("/books", middlewareAuth.requireAuth, bookRouter);

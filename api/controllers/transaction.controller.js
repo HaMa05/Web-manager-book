@@ -42,7 +42,7 @@ module.exports.indexTransaction = async (req, res) => {
 	res.json(userDisplay);
 }
 
-// // user 
+// user 
 // module.exports.indexTransactionUser = async (req, res, next) => {
 // 	let cookieId = req.signedCookies.cookieId; // cookieId = userId
 
@@ -82,60 +82,28 @@ module.exports.indexTransaction = async (req, res) => {
 // 	})
 
 // 	// console.log(userDisplay);
-// 	res.render('transaction/transaction.pug', {
-// 		collections: userDisplay
-// 	});
-// 	return;
+// 	res.json(userDisplay);
 // }
 
-// module.exports.create = async (req, res) => {
-// 	let users = await userModel.find();
-// 	let books = await bookModel.find();
-// 	res.render('transaction/transaction-create.pug', {
-// 		users: users,
-// 		books: books
-// 	});
-// }
+module.exports.postCreate = async (req, res) => {
 
-// module.exports.postCreate = async (req, res) => {
-// 	// find id of book from title book
-// 	// let id = shortid.generate();
-// 	let user = await userModel.find(
-// 			{
-// 				name: req.body.userId
-// 			}
-// 		);
-// 	let book = await bookModel.find(
-// 			{
-// 				title: req.body.bookId
-// 			}
-// 		);
+	let user = await userModel.find(
+			{
+				name: req.body.userId
+			}
+		);
+	let book = await bookModel.find(
+			{
+				title: req.body.bookId
+			}
+		);
 
-// 	let isComplete = false;
-// 	let data = req.body;
-// 	req.body.userId = user[0].id;
-// 	req.body.bookId = book[0].id;
-// 	req.body.isComplete = isComplete;
-// 	req.body.amount = 1;
+	// let isComplete = false;
+	let data = req.body;
+	// req.body.userId = user[0].id;
+	// req.body.bookId = book[0].id;
+	// req.body.isComplete = isComplete;
+	// req.body.amount = 1;
 
-// 	bookRentsModel.insertMany(data);
-
-// 	res.redirect('/');
-// }
-
-// module.exports.finishBook = async (req, res) => {
-// 	const id = req.params.id;
-// 	var book = await bookRentsModel.find({_id: id});
-// 	if(book[0].amount === 1) {
-// 		await bookRentsModel.findByIdAndUpdate(id, {isComplete: true});
-// 		res.redirect('/transactions');
-// 	}
-// 	await bookRentsModel.findByIdAndUpdate(id, {amount: book[0].amount - 1});
-// 	res.redirect('/transactions');
-// }
-
-// // if id = null
-// module.exports.errorFinish = (req, res) => {
-// 	// res.send("Error !!!");
-// 	res.redirect('/transactions');
-// }
+  res.json(data);
+}
