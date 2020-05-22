@@ -14,7 +14,7 @@ router.get("/see", paginationMiddleware.perPage("user"), controllerUser.see);
 router.post("/add/user", validationUser.postUser, controllerUser.postUser);
 
 // xóa user
-router.get("/delete", controllerUser.deleteUser);
-router.get("/:id/delete", controllerUser.getDelete);
+router.get("/delete/user", controllerUser.deleteUser);
+router.get("/:id/delete/user", controllerUser.getDelete);
 
 module.exports = router;

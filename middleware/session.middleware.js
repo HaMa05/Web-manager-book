@@ -1,5 +1,5 @@
 const shortid = require("shortid");
-// const db = require("../db");
+const db = require("../db");
 const sessionModel = require("../models/session.model")
 
 module.exports = async (req, res, next) => {
