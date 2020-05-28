@@ -22,7 +22,7 @@ var favicon = require("serve-favicon");
 var path = require("path");
 
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 const authApiRouter = require("./api/routers/auth.router");
 const transactionApiRouter = require("./api/routers/transaction.router");

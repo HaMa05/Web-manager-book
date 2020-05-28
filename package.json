@@ -16,10 +16,8 @@
     "cloudinary": "^1.21.0",
     "cookie-parser": "^1.4.5",
     "dotenv": "^8.2.0",
-    "express": "^4.17.1",
     "lowdb": "^1.0.0",
     "md5": "^2.2.1",
-    "mongodb": "^3.5.7",
     "mongoose": "^5.9.15",
     "multer": "^1.4.2",
     "nodemailer": "^6.4.6",
@@ -29,6 +27,8 @@
     "shortid": "^2.2.15"
   },
   "devDependencies": {
-    "nodemon": "^2.0.3"
+    "nodemon": "^2.0.3",
+    "mongodb": "^3.5.7",
+    "express": "^4.17.1"
   }
 }
