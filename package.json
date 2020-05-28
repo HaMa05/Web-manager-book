@@ -25,10 +25,10 @@
     "pug": "^2.0.4",
     "serve-favicon": "^2.5.0",
     "shortid": "^2.2.15",
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "mongodb": "^3.5.7"
   },
   "devDependencies": {
-    "nodemon": "^2.0.3",
-    "mongodb": "^3.5.7"
+    "nodemon": "^2.0.3"
   }
 }
