@@ -4,7 +4,7 @@ require("dotenv").config();
 const express = require("express");
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
-const mongodb = require("mongoDB");
+const mongodb = require("mongodb");
 // getting-started.js
 var mongoose = require('mongoose');
 mongoose.connect( process.env.MONGO_URL, 
