@@ -3,7 +3,7 @@ var mongoose = require("mongoose");
 var sessionSchema = new mongoose.Schema(
 	{
 		sessionId: String,
-		books: Array	
+		books: Object 	
 	},
 	{
 		collection: "session"

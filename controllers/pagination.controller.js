@@ -6,11 +6,11 @@ module.exports.get = async (req, res) => {
   let result = res.locals.result;
   let sessionId = req.signedCookies.sessionId;
 
-  let bookRent = db.get("session")
-                   .find({sessionId: sessionId})
-                   .get("book")
-                   .value()
-                   
+  // let bookRent = db.get("session")
+  //                  .find({sessionId: sessionId})
+  //                  .get("book")
+  //                  .value()
+  let bookRent =  await sessionModel.find({sessionId: sessionId});              
   var amountBookRent = 0;
   for(var id in bookRent) {
       amountBookRent += bookRent[id];
@@ -25,7 +25,7 @@ module.exports.get = async (req, res) => {
   });
 }
 
-module.exports.addToBook = (req, res, next) => {
+module.exports.addToBook = async (req, res, next) => {
   let productId = req.params.id;
   let sessionId = req.signedCookies.sessionId;
 
@@ -35,16 +35,27 @@ module.exports.addToBook = (req, res, next) => {
     return;
   }
 
-  let count = db.get("session")
-                .find({sessionId: sessionId})
-                .get("book." + productId, 0)
-                .value()
+  // let count = db.get("session")
+  //               .find({sessionId: sessionId})
+  //               .get("book." + productId, 0)
+  //               .value()
 
-  db.get("session")
-    .find({sessionId: sessionId})
-    .set("book." + productId, count + 1)
-    .write()
+  let bookRent = await sessionModel.find({sessionId: sessionId})
+  if(bookRent.books) {
+    for(var book of bookRent.books) {
+      if(book === productId)
+        console.log("yes");
+      else console.log("No");
+    }
+  }
+  console.log("yessss");
 
+  // db.get("session")
+  //   .find({sessionId: sessionId})
+  //   .set("book." + productId, count + 1)
+  //   .write()
+  await sessionModel.insertOne({books: {"productId.": 1}});
+  // await sessionModel.find({books: {productId: 1}});
   res.redirect("/products");
 }
 
@@ -58,11 +69,12 @@ module.exports.addAll = (req, res) => {
   }
   
   // id của book được người dùng thêm
-  let books = db.get("session")
-                .find({sessionId: sessionId})
-                .get("book")
-                .value();
-  
+  // let books = db.get("session")
+  //               .find({sessionId: sessionId})
+  //               .get("book")
+  //               .value();
+  let books = sessionModel.find({sessionId: sessionId});
+
   let obj = {
     userId: cookieId,
     isComplete: false
@@ -79,9 +91,10 @@ module.exports.addAll = (req, res) => {
 
   for(let book in storeBook) {
     Object.assign(storeBook[book], obj);
-    db.get("collections")
-    .push(storeBook[book])
-    .write()
+    // db.get("collections")
+    // .push(storeBook[book])
+    // .write()
+    sessionModel.findByIdAndUpdate();
   }
 
   // reset dữ liệu trường book của session trong db
