@@ -5,6 +5,8 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const mongodb = require("mongodb");
+const cors = require('cors');
+
 // getting-started.js
 var mongoose = require('mongoose');
 mongoose.connect( process.env.MONGO_URL, 
@@ -50,11 +52,19 @@ app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser(process.env.SESSION_SECRET));
 app.use(middlewareSession);
+app.use(cors());
+
 // user public
 app.use(express.static("public"));
 
 // use favicon.ico into folder /public
 app.use(favicon(path.join(__dirname, "public", "favicon.ico")));
+// app.use( function(res, res, next) {
+//   res.header("Access-Control-Allow-Origin", "*");
+//   res.header("Access-Control-Allow-Methods", "GET, PUT, POST, DELETE");
+//   res.header("Access-Control-Allow-Headers", "Content-Type");
+//   next();
+// })
 
 // Trang chính
 app.use("/", indexRouter);
